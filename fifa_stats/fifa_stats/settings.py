@@ -117,6 +117,7 @@ INSTALLED_APPS = (
 
     'players',
     'matches',
+    'clubs',
 
     'south',
     )

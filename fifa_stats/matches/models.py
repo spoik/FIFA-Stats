@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 from players.models import Player
+from clubs.models import Team
 
 class Match(models.Model):
     # When the match took place
@@ -17,6 +18,10 @@ class Match(models.Model):
     # Scores
     winning_players_score = models.IntegerField()
     losing_players_score = models.IntegerField()
+
+    # The clubs that played in the match
+    winning_club = models.ManyToManyField(Team, related_name='won_matches')
+    losing_club = models.ManyToManyField(Team, related_name='lost_matches')
 
     class Meta:
         verbose_name = _('Match')
