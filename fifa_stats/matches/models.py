@@ -20,13 +20,14 @@ class Match(models.Model):
     losing_players_score = models.IntegerField()
 
     # The clubs that played in the match
-    winning_club = models.ManyToManyField(Team, related_name='won_matches')
-    losing_club = models.ManyToManyField(Team, related_name='lost_matches')
+    winning_club = models.ForeignKey(Team, related_name='won_matches')
+    losing_club = models.ForeignKey(Team, related_name='lost_matches')
 
     class Meta:
         verbose_name = _('Match')
         verbose_name_plural = _('Matches')
 
     def __unicode__(self):
-        pass
+        date_formatted = self.date.strftime('%b %d, %Y')
+        return u'%s vs. %s on %s' % (self.winning_club.name, self.losing_club.name, date_formatted)
     

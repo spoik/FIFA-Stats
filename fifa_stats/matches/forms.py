@@ -9,5 +9,4 @@ class MatchForm(forms.ModelForm):
 
     class Meta:
         model = Match
-    
         

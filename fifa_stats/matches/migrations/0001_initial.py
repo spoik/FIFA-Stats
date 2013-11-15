@@ -14,6 +14,8 @@ class Migration(SchemaMigration):
             ('date', self.gf('django.db.models.fields.DateTimeField')()),
             ('winning_players_score', self.gf('django.db.models.fields.IntegerField')()),
             ('losing_players_score', self.gf('django.db.models.fields.IntegerField')()),
+            ('winning_club', self.gf('django.db.models.fields.related.ForeignKey')(related_name='won_matches', to=orm['clubs.Team'])),
+            ('losing_club', self.gf('django.db.models.fields.related.ForeignKey')(related_name='lost_matches', to=orm['clubs.Team'])),
         ))
         db.send_create_signal(u'matches', ['Match'])
 
@@ -48,12 +50,19 @@ class Migration(SchemaMigration):
 
 
     models = {
+        u'clubs.team': {
+            'Meta': {'object_name': 'Team'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
         u'matches.match': {
             'Meta': {'object_name': 'Match'},
             'date': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'losing_club': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'lost_matches'", 'to': u"orm['clubs.Team']"}),
             'losing_players': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'lost_matches'", 'symmetrical': 'False', 'to': u"orm['players.Player']"}),
             'losing_players_score': ('django.db.models.fields.IntegerField', [], {}),
+            'winning_club': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'won_matches'", 'to': u"orm['clubs.Team']"}),
             'winning_players': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'won_matches'", 'symmetrical': 'False', 'to': u"orm['players.Player']"}),
             'winning_players_score': ('django.db.models.fields.IntegerField', [], {})
         },
