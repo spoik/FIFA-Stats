@@ -19,6 +19,7 @@ import os, dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
 
 
