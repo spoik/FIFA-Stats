@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 DATABASES = {}
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config(default='sqlite:////' + BASE_DIR + '/db.sqlite3')
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
@@ -57,8 +57,12 @@ INSTALLED_APPS = (
     'clubs',
 
     # 3rd party apps
+    'crispy_forms',
     'south',
 )
+
+# Set Crispy Forms CSS framework to use
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
