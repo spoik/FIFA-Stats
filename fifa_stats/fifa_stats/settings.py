@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'players',
     'matches',
     'clubs',
+    'main',
 
     # 3rd party apps
     'crispy_forms',

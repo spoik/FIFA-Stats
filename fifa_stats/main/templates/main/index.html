@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p>
+            The purpose of this website is to track the wins and losses of players and teams during lunchtime
+            fifa matches. If you would like to submit the results of a match, click <a href="{% url 'matches:create'%}">here</a>.
+        </p>
+    </div>
+{% endblock main_content %}
