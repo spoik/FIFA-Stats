@@ -5,6 +5,7 @@ class Team(models.Model):
     name = models.CharField(max_length=100)
 
     class Meta:
+    	ordering = ['name']
         verbose_name = _('Team')
         verbose_name_plural = _('Teams')
 

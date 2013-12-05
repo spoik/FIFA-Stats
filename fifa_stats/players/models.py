@@ -7,6 +7,7 @@ class Player(models.Model):
     last_name = models.CharField(max_length=50)
 
     class Meta:
+    	ordering = ['first_name', 'last_name']
         verbose_name = _('player')
         verbose_name_plural = _('players')
 
