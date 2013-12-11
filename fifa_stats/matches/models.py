@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 from players.models import Player
 from clubs.models import Team
 
+
 class Match(models.Model):
     # When the match took place
     date = models.DateTimeField()
@@ -22,6 +23,7 @@ class Match(models.Model):
     # The clubs that played in the match
     winning_club = models.ForeignKey(Team, related_name='won_matches')
     losing_club = models.ForeignKey(Team, related_name='lost_matches')
+
 
     class Meta:
         verbose_name = _('Match')
