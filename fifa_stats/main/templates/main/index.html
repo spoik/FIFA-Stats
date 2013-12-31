@@ -7,5 +7,49 @@
             The purpose of this website is to track the wins and losses of players and teams during lunchtime
             fifa matches. If you would like to submit the results of a match, click <a href="{% url 'matches:create'%}">here</a>.
         </p>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Top Players</div>
+                    <div class="panel-body">
+                        <ol>
+                            {% for player in top_players %}
+                                <li>
+                                    {% if forloop.first %}
+                                        <strong>
+                                    {% endif %}
+                                        {{ player }}
+                                    {% if forloop.first %}
+                                        </strong>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Bottom Players</div>
+                    <div class="panel-body">
+                        <ol>
+                            {% for player in bottom_players %}
+                                <li>
+                                    {% if forloop.first %}
+                                        <strong>
+                                    {% endif %}
+                                        {{ player }}
+                                    {% if forloop.first %}
+                                        </strong>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock main_content %}

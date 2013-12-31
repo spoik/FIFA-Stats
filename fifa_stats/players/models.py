@@ -2,12 +2,19 @@ from django.utils.translation import ugettext as _
 from django.db import models
 from django.db.models import Count
 
-
 class TopPlayersManager(models.Manager):
     def get_queryset(self):
         queryset = super(TopPlayersManager, self).get_queryset()
         queryset = queryset.all()
         queryset = queryset.annotate(won=Count('won_matches')).order_by('-won')
+        return queryset
+
+
+class BottomPlayersManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(BottomPlayersManager, self).get_queryset()
+        queryset = queryset.all()
+        queryset = queryset.annotate(lost=Count('lost_matches')).order_by('-lost')
         return queryset
 
 
@@ -20,6 +27,7 @@ class Player(models.Model):
     # Managers
     objects = models.Manager()
     top = TopPlayersManager()
+    bottom = BottomPlayersManager()
 
     class Meta:
     	ordering = ['first_name', 'last_name']
